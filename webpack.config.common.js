@@ -15,5 +15,20 @@ module.exports = {
       inject: true,
       template: path.resolve(__dirname, 'src', 'index.html'),
     }),
-  ]
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /[\\/]node_modules[\\/]/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+    ]
+  }
 }
