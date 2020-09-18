@@ -1,4 +1,5 @@
 const { merge } = require('webpack-merge')
+const webpack = require('webpack')
 const commonConfig = require('./webpack.config.common')
 
 module.exports = merge(commonConfig, {
@@ -6,7 +7,13 @@ module.exports = merge(commonConfig, {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './build',
+    port: 3000,
+    clientLogLevel: 'silent',
+    hot: true
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
   module: {
     rules: [
       {
@@ -14,5 +21,5 @@ module.exports = merge(commonConfig, {
         use: ['style-loader', 'css-loader']
       },
     ]
-  }
+  },
 })
