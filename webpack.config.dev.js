@@ -7,4 +7,12 @@ module.exports = merge(commonConfig, {
   devServer: {
     contentBase: './build',
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+    ]
+  }
 })
