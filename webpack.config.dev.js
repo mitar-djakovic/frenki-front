@@ -1,6 +1,6 @@
-const { merge } = require('webpack-merge')
-const webpack = require('webpack')
-const commonConfig = require('./webpack.config.common')
+const { merge } = require('webpack-merge');
+const webpack = require('webpack');
+const commonConfig = require('./webpack.config.common');
 
 module.exports = merge(commonConfig, {
   mode: 'development',
@@ -9,17 +9,18 @@ module.exports = merge(commonConfig, {
     contentBase: './build',
     port: 3000,
     clientLogLevel: 'silent',
-    hot: true
+    hot: true,
+    historyApiFallback: true,
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ],
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
-    ]
+    ],
   },
-})
+});
