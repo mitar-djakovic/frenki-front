@@ -1,7 +1,8 @@
-import * as React from "react";
-import { render } from "react-dom";
-import App from "./app";
+import * as React from 'react';
+import { render } from 'react-dom';
+import App from './app';
 
-if (module.hot) module.hot.accept()
+if (module.hot) module.hot.accept();
 
-render(<App />, document.getElementById("app"));
+/* eslint-disable no-undef */
+render(<App />, document.getElementById('app'));

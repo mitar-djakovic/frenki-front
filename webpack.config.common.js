@@ -1,12 +1,12 @@
-const path = require('path')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
     filename: '[name].[hash].js',
-    path: path.resolve(__dirname, 'build')
+    path: path.resolve(__dirname, 'build'),
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -25,6 +25,16 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
-    ]
-  }
-}
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /[\\/]node_modules[\\/]/,
+        use: {
+          loader: 'eslint-loader',
+          options: {
+            fix: true,
+          },
+        },
+      },
+    ],
+  },
+};
