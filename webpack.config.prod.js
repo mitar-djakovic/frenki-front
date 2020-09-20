@@ -1,8 +1,8 @@
-const { merge } = require('webpack-merge')
+const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
-const commonConfig = require('./webpack.config.common')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const commonConfig = require('./webpack.config.common');
 
 module.exports = merge(commonConfig, {
   mode: 'production',
@@ -14,6 +14,18 @@ module.exports = merge(commonConfig, {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
+        ],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          'file-loader',
         ],
       },
     ],
@@ -43,4 +55,4 @@ module.exports = merge(commonConfig, {
       }),
     ],
   },
-})
+});
