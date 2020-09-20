@@ -14,6 +14,7 @@ const Button = styled.button`
   line-height: 24px;
   text-align: center;
   color: #FFFFFF;
+  font-family: 'Metropolis', sans-serif;
 
   &:hover {
     background: #6690FF;
