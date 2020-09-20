@@ -4,7 +4,9 @@ import {
 } from 'formik';
 import Input from '../../atoms/input';
 import Button from '../../atoms/button';
+import ErrorText from '../../atoms/errorText';
 import { FormContainer } from './style';
+import { loginValidationSchema } from './schema';
 
 const LoginForm = () => (
   <FormContainer>
@@ -15,8 +17,11 @@ const LoginForm = () => (
       }}
       onSubmit={(values) => {
       }}
+      validationSchema={loginValidationSchema}
     >
-      {({ handleChange, values, handleSubmit }) => (
+      {({
+        handleChange, values, handleSubmit, errors, touched,
+      }) => (
         <Form onSubmit={handleSubmit}>
           <Field
             type="email"
@@ -27,6 +32,9 @@ const LoginForm = () => (
             component={Input}
             placeholder="Email"
           />
+          {errors.email && touched.email && (
+            <ErrorText error={errors.email} />
+          )}
           <Field
             type="password"
             name="password"
@@ -36,6 +44,9 @@ const LoginForm = () => (
             component={Input}
             placeholder="Password"
           />
+          {errors.password && touched.password && (
+            <ErrorText error={errors.password} />
+          )}
           <Button text="Login" type="submit" />
         </Form>
       )}
