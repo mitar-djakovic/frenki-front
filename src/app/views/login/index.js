@@ -1,9 +1,11 @@
 import React from 'react';
+import LoginForm from '../../components/organisms/loginForm';
+import { LoginViewContainer } from './style';
 
 const LoginView = () => (
-  <div>
-    Login
-  </div>
+  <LoginViewContainer>
+    <LoginForm />
+  </LoginViewContainer>
 );
 
 export default LoginView;

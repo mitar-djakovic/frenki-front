@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from './style';
 
-export default () => (
-  <Button>Default</Button>
+export default ({ type, text }) => (
+  <Button type={type}>{text}</Button>
 );

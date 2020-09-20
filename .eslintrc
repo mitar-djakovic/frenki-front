@@ -4,6 +4,8 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-unused-vars": 0,
-    "react/button-has-type": 0
+    "react/button-has-type": 0,
+    "import/prefer-default-export": 0,
+    "react/prop-types": 0
   }
 }
