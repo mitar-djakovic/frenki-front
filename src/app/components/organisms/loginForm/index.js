@@ -5,8 +5,8 @@ import {
 import Input from '../../atoms/input';
 import Button from '../../atoms/button';
 import ErrorText from '../../atoms/errorText';
-import { FormContainer } from './style';
 import { loginValidationSchema } from './schema';
+import { FormContainer, InputContainer } from './style';
 
 const LoginForm = () => (
   <FormContainer>
@@ -20,33 +20,39 @@ const LoginForm = () => (
       validationSchema={loginValidationSchema}
     >
       {({
-        handleChange, values, handleSubmit, errors, touched,
+        values, errors, touched, handleChange, handleSubmit,
       }) => (
         <Form onSubmit={handleSubmit}>
-          <Field
-            type="email"
-            name="email"
-            id="email"
-            onChange={handleChange}
-            value={values.email}
-            component={Input}
-            placeholder="Email"
-          />
-          {errors.email && touched.email && (
-            <ErrorText error={errors.email} />
-          )}
-          <Field
-            type="password"
-            name="password"
-            id="password"
-            onChange={handleChange}
-            value={values.password}
-            component={Input}
-            placeholder="Password"
-          />
-          {errors.password && touched.password && (
-            <ErrorText error={errors.password} />
-          )}
+          <InputContainer>
+            <Field
+              type="email"
+              name="email"
+              id="email"
+              onChange={handleChange}
+              value={values.email}
+              component={Input}
+              placeholder="Email"
+              error={errors.email}
+            />
+            {errors.email && touched.email && (
+              <ErrorText error={errors.email} />
+            )}
+          </InputContainer>
+          {/* <InputContainer>
+            <Field
+              type="password"
+              name="password"
+              id="password"
+              onChange={handleChange}
+              value={values.password}
+              component={Input}
+              placeholder="Password"
+              error={errors.password}
+            />
+            {errors.password && touched.password && (
+              <ErrorText error={errors.password} />
+            )}
+          </InputContainer> */}
           <Button text="Login" type="submit" />
         </Form>
       )}
