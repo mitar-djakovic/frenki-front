@@ -9,8 +9,6 @@ const ErrorText = styled.div`
   display: flex;
   align-items: center;
   letter-spacing: 0.25px;
-  color: #E25822;
-  margin-bottom: 10px;
 `;
 
 export {
