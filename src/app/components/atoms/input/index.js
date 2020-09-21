@@ -20,7 +20,9 @@ export default ({
         onBlur={() => setFocus(false)}
         className={classNames({ focus: focus && !error, error, validated: value && !error })}
       />
-      <InputStatusBar className={classNames({ focus: focus && !error, error, validated: value && !error })} />
+      <InputStatusBar
+        className={classNames({ focus: focus && !error, error, validated: value && !error })}
+      />
     </InputContainer>
   );
 };
