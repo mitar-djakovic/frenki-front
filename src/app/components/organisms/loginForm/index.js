@@ -10,7 +10,7 @@ import {
   FormContainer, InputContainer, Wrapper, Title, WelcomeInfo, WelcomeText,
 } from './style';
 
-const LoginForm = () => (
+const LoginForm = ({ setActiveForm }) => (
   <FormContainer>
     <Wrapper>
       <Title>frenki.</Title>
@@ -60,6 +60,7 @@ const LoginForm = () => (
               )}
             </InputContainer>
             <Button text="Login" type="submit" />
+            <Button onClick={() => setActiveForm('signup')} text="Create account" />
           </Form>
         )}
       </Formik>
