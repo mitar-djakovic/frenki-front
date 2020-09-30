@@ -7,14 +7,14 @@ import Button from '../../atoms/button';
 import ErrorText from '../../atoms/errorText';
 import { singupValidationSchema } from './schema';
 import {
-  FormContainer, InputContainer, Wrapper, Title, WelcomeInfo, WelcomeText,
+  FormContainer, InputContainer, Wrapper, Title, WelcomeInfo, WelcomeText, ButtonsContainer,
 } from './style';
 
 const LoginForm = ({ setActiveForm }) => (
   <FormContainer>
     <Wrapper>
       <Title>frenki.</Title>
-      <WelcomeText>Sig up!</WelcomeText>
+      <WelcomeText>Hello There!</WelcomeText>
       <WelcomeInfo>Sign up to continue</WelcomeInfo>
       <Formik
         initialValues={{
@@ -107,8 +107,16 @@ const LoginForm = ({ setActiveForm }) => (
                 <ErrorText error={errors.repeatPassword} />
               )}
             </InputContainer>
-            <Button text="Sign up" type="submit" />
-            <Button text="Welcome back" onClick={() => setActiveForm('login')} />
+            <ButtonsContainer>
+              <Button
+                text="Signup"
+                type="submit"
+              />
+              <Button
+                text="Welcome back"
+                onClick={() => setActiveForm('login')}
+              />
+            </ButtonsContainer>
           </Form>
         )}
       </Formik>
