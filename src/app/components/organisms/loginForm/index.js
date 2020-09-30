@@ -7,7 +7,7 @@ import Button from '../../atoms/button';
 import ErrorText from '../../atoms/errorText';
 import { loginValidationSchema } from './schema';
 import {
-  FormContainer, InputContainer, Wrapper, Title, WelcomeInfo, WelcomeText,
+  FormContainer, InputContainer, Wrapper, Title, WelcomeInfo, WelcomeText, ButtonsContainer,
 } from './style';
 
 const LoginForm = ({ setActiveForm }) => (
@@ -59,8 +59,16 @@ const LoginForm = ({ setActiveForm }) => (
               <ErrorText error={errors.password} />
               )}
             </InputContainer>
-            <Button text="Login" type="submit" />
-            <Button onClick={() => setActiveForm('signup')} text="Create account" />
+            <ButtonsContainer>
+              <Button
+                text="Login"
+                type="submit"
+              />
+              <Button
+                text="Create account"
+                onClick={() => setActiveForm('signup')}
+              />
+            </ButtonsContainer>
           </Form>
         )}
       </Formik>

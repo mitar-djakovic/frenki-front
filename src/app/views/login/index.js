@@ -3,7 +3,7 @@ import LoginForm from '../../components/organisms/loginForm';
 import SignupForm from '../../components/organisms/signupForm';
 import Img from '../../components/atoms/img';
 import {
-  LoginViewContainer, WelcomeInfoContainer, Title,
+  LoginViewContainer, WelcomeInfoContainer, Title, Paragrpah, Wrapper,
 } from './style';
 import { loginBackground } from '../../../assets';
 
@@ -14,7 +14,12 @@ const LoginView = () => {
     <LoginViewContainer>
       <WelcomeInfoContainer>
         <Img src={loginBackground} />
-        <Title>frenki.</Title>
+        <Wrapper>
+          <Title>frenki.</Title>
+          <Paragrpah>
+            App that will solve all your organisation problems and save you time.
+          </Paragrpah>
+        </Wrapper>
       </WelcomeInfoContainer>
       {activeForm === 'login'
         ? <LoginForm setActiveForm={setActiveForm} />

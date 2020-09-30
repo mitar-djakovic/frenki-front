@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Input = styled.input`
-  width: 320px;
+  width: 420px;
   heigh: 40px;
   border: none;
   background: #FBFBFB;
@@ -17,7 +17,8 @@ const Input = styled.input`
   font-size: 14px;
   line-height: 20px;
   color: #343C44;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  
   ${({ className }) => className === 'error' && ({
     color: '#E25822',
   })}
@@ -44,7 +45,7 @@ const InputContainer = styled.div`
 const InputStatusBar = styled.div`
   display: none;
   box-sizing: border-box;
-  width: 316px;
+  width: 416px;
   margin-left: 2px;
   height: 3px;
   position: absolute;
@@ -52,7 +53,7 @@ const InputStatusBar = styled.div`
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   ${({ className }) => className === 'error' && ({
-    backgroundColor: '#E25822',
+    backgroundColor: '#E2164B',
     display: 'block',
   })}
   ${({ className }) => className === 'focus' && ({
