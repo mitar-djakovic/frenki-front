@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Formik, Form, Field,
 } from 'formik';
+import { connect } from 'react-redux';
 import Input from '../../atoms/input';
 import Button from '../../atoms/button';
 import ErrorText from '../../atoms/errorText';
@@ -10,7 +11,9 @@ import {
   FormContainer, InputContainer, Wrapper, Title, WelcomeInfo, WelcomeText, ButtonsContainer,
 } from './style';
 
-const LoginForm = ({ setActiveForm }) => (
+import { signUpAction } from '../../../redux/actions/user';
+
+const LoginForm = ({ setActiveForm, signUp }) => (
   <FormContainer>
     <Wrapper>
       <Title>frenki.</Title>
@@ -18,13 +21,19 @@ const LoginForm = ({ setActiveForm }) => (
       <WelcomeInfo>Sign up to continue</WelcomeInfo>
       <Formik
         initialValues={{
-          firstName: '',
-          lastName: '',
-          email: '',
-          password: '',
-          repeatPassword: '',
+          firstName: 'Mitar',
+          lastName: 'Djakovic',
+          email: 'mitar-djakovic2401993@hotmail.com',
+          password: '123456',
+          repeatPassword: '123456',
         }}
         onSubmit={(values) => {
+          const {
+            firstName, lastName, email, password, repeatPassword,
+          } = values;
+          if (password === repeatPassword) {
+            signUp(firstName, lastName, email, password, repeatPassword);
+          }
         }}
         validationSchema={singupValidationSchema}
       >
@@ -124,4 +133,10 @@ const LoginForm = ({ setActiveForm }) => (
   </FormContainer>
 );
 
-export default LoginForm;
+const mapDispatchToProps = (dispatch) => ({
+  signUp: (firstName, lastName, email, password, repeatPassword) => {
+    dispatch(signUpAction(firstName, lastName, email, password, repeatPassword));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(LoginForm);

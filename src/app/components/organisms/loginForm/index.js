@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Formik, Form, Field,
 } from 'formik';
+import { connect } from 'react-redux';
 import Input from '../../atoms/input';
 import Button from '../../atoms/button';
 import ErrorText from '../../atoms/errorText';
@@ -9,8 +10,9 @@ import { loginValidationSchema } from './schema';
 import {
   FormContainer, InputContainer, Wrapper, Title, WelcomeInfo, WelcomeText, ButtonsContainer,
 } from './style';
+import { logInAction, signUpAction } from '../../../redux/actions/user';
 
-const LoginForm = ({ setActiveForm }) => (
+const LoginForm = ({ setActiveForm, logIn }) => (
   <FormContainer>
     <Wrapper>
       <Title>frenki.</Title>
@@ -18,10 +20,14 @@ const LoginForm = ({ setActiveForm }) => (
       <WelcomeInfo>Log in to continue</WelcomeInfo>
       <Formik
         initialValues={{
-          email: '',
-          password: '',
+          email: 'mitar-djakovic2401993@hotmail.com',
+          password: '123456',
         }}
         onSubmit={(values) => {
+          const { email, password } = values;
+          if (email && password) {
+            logIn(email, password);
+          }
         }}
         validationSchema={loginValidationSchema}
       >
@@ -76,4 +82,8 @@ const LoginForm = ({ setActiveForm }) => (
   </FormContainer>
 );
 
-export default LoginForm;
+const mapDispatchToProps = (dispatch) => ({
+  logIn: (email, password) => dispatch(logInAction(email, password)),
+});
+
+export default connect(null, mapDispatchToProps)(LoginForm);
