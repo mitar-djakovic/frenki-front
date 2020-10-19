@@ -20,8 +20,8 @@ const LoginForm = ({ setActiveForm, logIn }) => (
       <WelcomeInfo>Log in to continue</WelcomeInfo>
       <Formik
         initialValues={{
-          email: 'mitar-djakovic2401993@hotmail.com',
-          password: '123456',
+          email: '',
+          password: '',
         }}
         onSubmit={(values) => {
           const { email, password } = values;

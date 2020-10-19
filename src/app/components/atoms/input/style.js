@@ -52,6 +52,8 @@ const InputStatusBar = styled.div`
   bottom: 0px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0px 10px 20px -13px rgba(32, 56, 117, 0.35);
   ${({ className }) => className === 'error' && ({
     backgroundColor: '#E2164B',
     display: 'block',
