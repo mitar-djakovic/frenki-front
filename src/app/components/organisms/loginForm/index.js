@@ -34,8 +34,8 @@ const LoginForm = ({
         <WelcomeInfo>Log in to continue</WelcomeInfo>
         <Formik
           initialValues={{
-            email: 'mitar-djakovic2401993@hotmail.com',
-            password: '123456',
+            email: '',
+            password: '',
           }}
           onSubmit={(values) => {
             const { email, password } = values;
@@ -60,9 +60,9 @@ const LoginForm = ({
                   placeholder="Email"
                   error={errors.email}
                 />
-                {errors.email && touched.email && (
-                <ErrorText error={errors.email} />
-                )}
+                {errors.email || touched.email ? (
+                  <ErrorText error={errors.email} />
+                ) : null}
               </InputContainer>
               <InputContainer>
                 <Field
@@ -75,9 +75,9 @@ const LoginForm = ({
                   placeholder="Password"
                   error={errors.password}
                 />
-                {errors.password && touched.password && (
-                <ErrorText error={errors.password} />
-                )}
+                {errors.password || touched.password ? (
+                  <ErrorText error={errors.password} />
+                ) : null}
               </InputContainer>
               <ButtonsContainer>
                 <Button

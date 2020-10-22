@@ -21,19 +21,18 @@ const LoginForm = ({ setActiveForm, signUp }) => (
       <WelcomeInfo>Sign up to continue</WelcomeInfo>
       <Formik
         initialValues={{
-          firstName: 'Mitar',
-          lastName: 'Djakovic',
-          email: 'mitar-djakovic2401993@hotmail.com',
-          password: '123456',
-          repeatPassword: '123456',
+          firstName: '',
+          lastName: '',
+          email: '',
+          password: '',
+          repeatPassword: '',
         }}
         onSubmit={(values) => {
           const {
             firstName, lastName, email, password, repeatPassword,
           } = values;
-          if (password === repeatPassword) {
-            signUp(firstName, lastName, email, password, repeatPassword);
-          }
+
+          signUp(firstName, lastName, email, password, repeatPassword);
         }}
         validationSchema={singupValidationSchema}
       >

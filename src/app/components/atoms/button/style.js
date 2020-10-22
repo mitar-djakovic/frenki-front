@@ -15,6 +15,9 @@ const Button = styled.button`
   text-align: center;
   color: #FFFFFF;
   min-width: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     background: #6690FF;
