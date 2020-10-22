@@ -1,8 +1,11 @@
 import {
-  call, put, takeEvery, takeLatest, all,
+  call, put, takeEvery, takeLatest, all, fork,
 } from 'redux-saga/effects';
 import axios from 'axios';
-import { SIGNUP_REQUEST, LOGIN_REQUEST } from '../../constants';
+import {
+  SIGNUP_REQUEST, LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR, LOGIN_CLEAR,
+} from '../../constants';
+import * as Api from '../../../api/user';
 
 function* signUp({
   payload,
@@ -28,25 +31,39 @@ function* signUp({
   }
 }
 
-function* logIn({ payload }) {
-  const {
-    email, password,
-  } = payload;
+function* login({ payload }) {
+  const { email, password } = payload;
+  const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
 
-  function logInApi() {
-    return axios.post('http://localhost:8000/api/accounts/login', {
-      email,
-      password,
-    });
-  }
   try {
-    yield call(logInApi);
-    yield call({ type: LOGIN_REQUEST });
+    const account = yield call(Api.login, email, password);
+
+    yield put({
+      type: LOGIN_SUCCESS,
+      payload: {
+        token: account.data.token, message: account.data.message, id: account.data.id,
+      },
+    });
+
+    yield call(delay, 2500);
+    yield put({ type: LOGIN_CLEAR });
   } catch (err) {
-    console.log('err', err);
+    yield put({
+      type: LOGIN_ERROR,
+      payload: {
+        message: err.response.data.msg, token: err.response.data.token,
+      },
+    });
+
+    yield call(delay, 2500);
+    yield put({ type: LOGIN_CLEAR });
   }
 }
-export function* userSaga() {
-  yield takeEvery(SIGNUP_REQUEST, signUp);
-  yield takeEvery(LOGIN_REQUEST, logIn);
+
+function* watchLogin() {
+  yield takeEvery(LOGIN_REQUEST, login);
 }
+
+export const userSagas = [
+  fork(watchLogin),
+];

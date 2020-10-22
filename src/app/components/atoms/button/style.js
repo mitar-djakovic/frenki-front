@@ -6,7 +6,7 @@ const Button = styled.button`
   border-radius: 4px;
   display: flex;
   flex-direction: row;
-  padding: 8px 16px;
+  padding: 8px 24px;
   color: #FFF;
   font-style: normal;
   font-weight: 500;
@@ -14,9 +14,11 @@ const Button = styled.button`
   line-height: 24px;
   text-align: center;
   color: #FFFFFF;
+  min-width: 84px;
 
   &:hover {
     background: #6690FF;
+    cursor: pointer;
   }
 `;
 
