@@ -1,7 +1,9 @@
-import { spawn } from 'redux-saga/effects';
+import { all } from 'redux-saga/effects';
 
-import { userSaga } from './user';
+import { userSagas } from './user';
 
 export default function* rootSaga() {
-  yield spawn(userSaga);
+  yield all([
+    ...userSagas,
+  ]);
 }

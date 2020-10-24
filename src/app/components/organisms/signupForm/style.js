@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const FormContainer = styled.div`
   width: 100%;
   display: flex;
-  height: 100vh;
   justify-content: center;
+  align-items: center;
   z-index: 1;
 `;
 
@@ -20,8 +20,8 @@ const InputContainer = styled.div`
 `;
 
 const Wrapper = styled.div`
-  margin-top: 100px;
   z-index: 1;
+  position: relative;
 `;
 
 const Title = styled.h1`
@@ -29,7 +29,7 @@ const Title = styled.h1`
   letter-spacing: 8px;
   font-weight: 500;
   color: #FFFFFF;
-  margin-bottom: 90px;
+  margin-bottom: 20px;
 `;
 
 const WelcomeText = styled.h2`
