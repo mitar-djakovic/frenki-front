@@ -7,6 +7,7 @@ const LoginViewContainer = styled.div`
   height: 100vh;
   width: 100%;
   background-color: #060039;
+  position: relative;
 `;
 
 const WelcomeInfoContainer = styled.div`

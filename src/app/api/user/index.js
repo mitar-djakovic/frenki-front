@@ -5,7 +5,7 @@ const login = (email, password) => axios.post('http://localhost:8000/api/account
   password,
 });
 
-const signUp = (firstName, lastName, email, password, repeatPassword) => axios.post('http://localhost:8000/api/accounts/signup', {
+const signup = (firstName, lastName, email, password, repeatPassword) => axios.post('http://localhost:8000/api/accounts/signup', {
   firstName,
   lastName,
   email,
@@ -15,5 +15,5 @@ const signUp = (firstName, lastName, email, password, repeatPassword) => axios.p
 
 export {
   login,
-  signUp,
+  signup,
 };

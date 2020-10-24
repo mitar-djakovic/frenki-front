@@ -14,7 +14,7 @@ const Snackbar = styled.div`
   line-height: 24px;
   position: absolute;
   visibility: hidden;
-  bottom: -60px;
+  // bottom: -60px;
   display: flex;
   align-items: center;
 
