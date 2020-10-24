@@ -18,6 +18,7 @@ const Input = styled.input`
   line-height: 20px;
   color: #343C44;
   margin-bottom: 24px;
+  outline: none;
   
   ${({ className }) => className === 'error' && ({
     color: '#E25822',
