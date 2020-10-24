@@ -26,7 +26,7 @@ const LoginForm = ({
       setIcon(<BsCheckCircle size="17px" />);
     }
   }, [error]);
-  const lol = 'lol';
+
   return (
     <FormContainer>
       <Wrapper>
@@ -35,11 +35,11 @@ const LoginForm = ({
         <WelcomeInfo>Sign up to continue</WelcomeInfo>
         <Formik
           initialValues={{
-            firstName: 'Mitar',
-            lastName: 'Djakovic',
-            email: 'mitar@mitar.com',
-            password: '1234567',
-            repeatPassword: '1234567',
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            repeatPassword: '',
           }}
           onSubmit={(values) => {
             const {
