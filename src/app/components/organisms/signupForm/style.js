@@ -20,6 +20,7 @@ const InputContainer = styled.div`
 `;
 
 const Wrapper = styled.div`
+  z-index: 1;
   position: relative;
 `;
 
@@ -43,7 +44,7 @@ const WelcomeInfo = styled.p`
   font-size: 16px;
   letter-spacing: 2px;
   font-weight: 500;
-  color: #e5e5e5;
+  color: #E5E5E5;
   margin-bottom: 48px;
 `;
 

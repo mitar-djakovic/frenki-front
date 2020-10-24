@@ -65,6 +65,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
+    font-family: 'Metropolis', sans-serif;
 }
 ol, ul {
 	list-style: none;

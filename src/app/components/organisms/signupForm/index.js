@@ -4,18 +4,19 @@ import {
 } from 'formik';
 import { connect } from 'react-redux';
 import { BsCheckCircle, BsFillExclamationCircleFill } from 'react-icons/bs';
+import Snackbar from '../../atoms/snackbar';
 import Input from '../../atoms/input';
 import Button from '../../atoms/button';
 import ErrorText from '../../atoms/errorText';
-import Snackbar from '../../atoms/snackbar';
-import { loginValidationSchema } from './schema';
+import { singupValidationSchema } from './schema';
 import {
   FormContainer, InputContainer, Wrapper, Title, WelcomeInfo, WelcomeText, ButtonsContainer,
 } from './style';
-import { logInAction } from '../../../redux/actions/user';
+
+import { signUpAction } from '../../../redux/actions/user';
 
 const LoginForm = ({
-  setActiveForm, login, loading, message, snackbarActive, error,
+  setActiveForm, signUp, snackbarActive, message, error, loading,
 }) => {
   const [icon, setIcon] = useState(null);
   useEffect(() => {
@@ -30,23 +31,59 @@ const LoginForm = ({
     <FormContainer>
       <Wrapper>
         <Title>frenki.</Title>
-        <WelcomeText>Welcome Back!</WelcomeText>
-        <WelcomeInfo>Log in to continue</WelcomeInfo>
+        <WelcomeText>Hello There!</WelcomeText>
+        <WelcomeInfo>Sign up to continue</WelcomeInfo>
         <Formik
           initialValues={{
+            firstName: '',
+            lastName: '',
             email: '',
             password: '',
+            repeatPassword: '',
           }}
           onSubmit={(values) => {
-            const { email, password } = values;
-            login(email, password);
+            const {
+              firstName, lastName, email, password, repeatPassword,
+            } = values;
+
+            signUp(firstName, lastName, email, password, repeatPassword);
           }}
-          validationSchema={loginValidationSchema}
+          validationSchema={singupValidationSchema}
         >
           {({
             values, errors, touched, handleChange, handleSubmit,
           }) => (
             <Form onSubmit={handleSubmit}>
+              <InputContainer>
+                <Field
+                  type="text"
+                  name="firstName"
+                  id="firstName"
+                  onChange={handleChange}
+                  value={values.firstName}
+                  component={Input}
+                  placeholder="First name"
+                  error={errors.firstName}
+                />
+                {errors.firstName && touched.firstName && (
+                  <ErrorText error={errors.firstName} />
+                )}
+              </InputContainer>
+              <InputContainer>
+                <Field
+                  type="text"
+                  name="firstName"
+                  id="lastName"
+                  onChange={handleChange}
+                  value={values.lastName}
+                  component={Input}
+                  placeholder="Last name"
+                  error={errors.lastName}
+                />
+                {errors.lastName && touched.lastName && (
+                  <ErrorText error={errors.lastName} />
+                )}
+              </InputContainer>
               <InputContainer>
                 <Field
                   type="email"
@@ -58,9 +95,9 @@ const LoginForm = ({
                   placeholder="Email"
                   error={errors.email}
                 />
-                {errors.email || touched.email ? (
+                {errors.email && touched.email && (
                   <ErrorText error={errors.email} />
-                ) : null}
+                )}
               </InputContainer>
               <InputContainer>
                 <Field
@@ -73,19 +110,34 @@ const LoginForm = ({
                   placeholder="Password"
                   error={errors.password}
                 />
-                {errors.password || touched.password ? (
+                {errors.password && touched.password && (
                   <ErrorText error={errors.password} />
-                ) : null}
+                )}
+              </InputContainer>
+              <InputContainer>
+                <Field
+                  type="password"
+                  name="repeatPassword"
+                  id="repeatPassword"
+                  onChange={handleChange}
+                  value={values.repeatPassword}
+                  component={Input}
+                  placeholder="Repeat password"
+                  error={errors.repeatPassword}
+                />
+                {errors.repeatPassword && touched.repeatPassword && (
+                  <ErrorText error={errors.repeatPassword} />
+                )}
               </InputContainer>
               <ButtonsContainer>
                 <Button
                   loading={loading}
-                  text="Login"
+                  text="Signup"
                   type="submit"
                 />
                 <Button
-                  text="Create account"
-                  onClick={() => setActiveForm('signup')}
+                  text="Welcome back"
+                  onClick={() => setActiveForm('login')}
                 />
               </ButtonsContainer>
             </Form>
@@ -116,7 +168,9 @@ const mapStateToProps = ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (email, password) => dispatch(logInAction(email, password)),
+  signUp: (firstName, lastName, email, password, repeatPassword) => {
+    dispatch(signUpAction(firstName, lastName, email, password, repeatPassword));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
