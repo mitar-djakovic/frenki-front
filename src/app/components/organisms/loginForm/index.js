@@ -3,6 +3,7 @@ import {
   Formik, Form, Field,
 } from 'formik';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { BsCheckCircle, BsFillExclamationCircleFill } from 'react-icons/bs';
 import Input from '../../atoms/input';
 import Button from '../../atoms/button';
@@ -15,7 +16,7 @@ import {
 import { logInAction } from '../../../redux/actions/user';
 
 const LoginForm = ({
-  setActiveForm, login, loading, message, snackbarActive, error,
+  setActiveForm, login, loading, message, snackbarActive, error, token,
 }) => {
   const [icon, setIcon] = useState(null);
   useEffect(() => {
@@ -25,6 +26,7 @@ const LoginForm = ({
       setIcon(<BsCheckCircle size="17px" />);
     }
   }, [error]);
+  const history = useHistory();
 
   return (
     <FormContainer>
@@ -39,7 +41,15 @@ const LoginForm = ({
           }}
           onSubmit={(values) => {
             const { email, password } = values;
-            login(email, password);
+            login(email, password).then((res) => {
+              if (res.data.token) {
+                setTimeout(() => {
+                  history.push('/home');
+                }, 2500);
+              }
+            }).catch((err) => {
+              throw err;
+            });
           }}
           validationSchema={loginValidationSchema}
         >
@@ -106,13 +116,14 @@ const LoginForm = ({
 
 const mapStateToProps = ({
   user: {
-    loading, message, snackbarActive, error,
+    loading, message, snackbarActive, error, token,
   },
 }) => ({
   loading,
   message,
   snackbarActive,
   error,
+  token,
 });
 
 const mapDispatchToProps = (dispatch) => ({
